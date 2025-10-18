@@ -1,0 +1,8 @@
+{
+  "name": "med-distinction-backend",
+  "main": "src/index.js", // or your entry file
+  "compatibility_date": "2025-10-18",
+  "assets": {
+    "directory": "./dist"
+  }
+}
