@@ -193,14 +193,13 @@ app.get("/api/library/file/:id", async (req, res) => {
 // =====================
 // Serve Frontend (for Railway)
 // =====================
-//const distPath = path.join(process.cwd(), "dist");
+const distPath = path.join(__dirname, "frontend", "dist");
+app.use(express.static(distPath));
 
-// Serve static frontend files
-//app.use(express.static(distPath));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
 
-// Catch-all route for SPA (React Router)
-//app.use((req, res) => {
-//  res.sendFile(path.join(distPath, "index.html"));});
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
