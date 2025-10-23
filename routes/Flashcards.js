@@ -1,5 +1,6 @@
 import express from "express";
-import Flashcard from "../models/Flashcard.js";
+import flashcardRoutes from "./routes/flashcards.js";
+
 
 const router = express.Router();
 
