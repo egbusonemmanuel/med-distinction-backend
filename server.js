@@ -40,33 +40,32 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 
 app.use(helmet());
 app.use(morgan(NODE_ENV === "production" ? "combined" : "dev"));
+// =====================
+// CORS Configuration (fixed for Railway)
+// =====================
+const allowedOrigins = [
+  "https://med-distinction-frontend-production.up.railway.app",
+  "http://localhost:5173",
+];
 
-app.use(
-  cors({
-    origin: [
-      "https://med-distinction-frontend-production.up.railway.app", // ✅ correct frontend
-      "http://localhost:5173", // for local dev
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
-// Ensure CORS headers are always sent
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://med-distinction-frontend-production.up.railway.app");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
+    return res.status(204).end();
   }
   next();
 });
 
-app.use(express.json({ limit: "6mb" }));
-app.use(express.urlencoded({ extended: true, limit: "6mb" }));
-app.use("/api/profile", profileRoutes);
-
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 
 // =====================
 // MongoDB
