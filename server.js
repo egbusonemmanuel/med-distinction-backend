@@ -22,7 +22,7 @@ import quizRoutes from "./routes/quizzes.js";
 import competitionRoutes from "./routes/competitions.js";
 import examRoutes from "./routes/exams.js";
 import courseRoutes from "./routes/courses.js";
-import flashcardRoutes from "./routes/Flashcards.js";
+import flashcardRoutes from "./routes/flashcards.js";
 
 import Leaderboard from "./models/Leaderboard.js";
 import Group from "./models/Group.js";
@@ -44,8 +44,8 @@ app.use(morgan(NODE_ENV === "production" ? "combined" : "dev"));
 app.use(
   cors({
     origin: [
-      "https://med-learn-frontend-production.up.railway.app",
-      "http://localhost:5173",
+      "https://med-distinction-frontend-production.up.railway.app", // ✅ correct frontend
+      "http://localhost:5173", // for local dev
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
