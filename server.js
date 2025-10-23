@@ -23,6 +23,7 @@ import competitionRoutes from "./routes/competitions.js";
 import examRoutes from "./routes/exams.js";
 import courseRoutes from "./routes/courses.js";
 import flashcardRoutes from "./routes/flashcards.js";
+
 import profileRoutes from "./routes/Profile.js";
 import Leaderboard from "./models/Leaderboard.js";
 import Group from "./models/Group.js";
