@@ -44,8 +44,7 @@ app.use(morgan(NODE_ENV === "production" ? "combined" : "dev"));
 app.use(
   cors({
     origin: [
-      "https://med-learn-frontend.vercel.app",
-      "https://med-learn.vercel.app",
+      "https://med-learn-frontend-production.up.railway.app",
       "http://localhost:5173",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -193,12 +192,12 @@ app.get("/api/library/file/:id", async (req, res) => {
 // =====================
 // Serve Frontend (for Railway)
 // =====================
-const distPath = path.join(__dirname, "frontend", "dist");
-app.use(express.static(distPath));
+//const distPath = path.join(__dirname, "frontend", "dist");
+//app.use(express.static(distPath));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
-});
+//app.get("*", (req, res) => {
+ // res.sendFile(path.join(distPath, "index.html"));
+//});
 
 
 app.listen(PORT, () => {
