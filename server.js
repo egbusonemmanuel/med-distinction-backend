@@ -46,9 +46,10 @@ app.use(morgan(NODE_ENV === "production" ? "combined" : "dev"));
 // CORS Configuration
 // =====================
 const allowedOrigins = [
-  "https://graceful-education-production.up.railway.app",
+  "https://med-distinction-frontend-production-e171.up.railway.app",
   "http://localhost:5173",
 ];
+
 app.use(cors({
   origin: allowedOrigins,
   credentials: true,
